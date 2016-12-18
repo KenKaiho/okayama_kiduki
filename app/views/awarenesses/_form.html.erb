@@ -1,0 +1,55 @@
+<%= form_for(@awareness) do |f| %>
+  <% if @awareness.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@awareness.errors.count, "error") %> prohibited this awareness from being saved:</h2>
+
+      <ul>
+      <% @awareness.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= f.hidden_field :information_id,:value => params[:format] %>
+  <%= f.hidden_field :users_id,:value => current_user.id %>
+<div class="panel panel-default">
+  <div class="panel-heading">今月の「気づき」：</div>
+  <div class="panel-body">
+        <div class="field">
+            <%= f.text_field :title %>
+        </div>
+  </div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">情報ソース：</div>
+  <div class="panel-body">
+	<div class="field">
+	    <%= f.text_field :source %>
+	</div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">SMSにとっての意味</div>
+  <div class="panel-body">
+        <div class="field">
+	    <%= f.text_area :meaning %>
+        </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">参考となるURLがあれば記入してください</div>
+  <div class="panel-body">
+        <div class="field">
+            <%= f.text_field :url %>
+        </div>
+  </div>
+</div>
+
+  <div class="actions">
+    <%= f.submit("この内容で確定する") %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module AwarenessesHasInformationsHelper
+end

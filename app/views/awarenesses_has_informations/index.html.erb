@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Awarenesses Has Informations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Awarenesseshasinformation</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @awarenesses_has_informations.each do |awarenesses_has_information| %>
+      <tr>
+        <td><%= awarenesses_has_information.AwarenessesHasInformation %></td>
+        <td><%= link_to 'Show', awarenesses_has_information %></td>
+        <td><%= link_to 'Edit', edit_awarenesses_has_information_path(awarenesses_has_information) %></td>
+        <td><%= link_to 'Destroy', awarenesses_has_information, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Awarenesses has information', new_awarenesses_has_information_path %>

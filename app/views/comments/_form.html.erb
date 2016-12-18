@@ -1,0 +1,37 @@
+<%= form_for(@comment) do |f| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= f.hidden_field :awareness_id,:value => params[:format] %>
+<%= f.hidden_field :users_id,:value => current_user.id %>
+
+<!-- For Toggle -->
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.0/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.0/js/bootstrap-toggle.min.js"></script>
+<!-- end -->
+
+<input type="checkbox" checked data-toggle="toggle" data-on="やるべき！" data-off="<i class='glyphicon glyphicon-thumbs-up'></i>" name="comment[good]">
+<input type="checkbox" unchecked data-toggle="toggle" data-on="いらない！" data-off="<i class='glyphicon glyphicon-thumbs-down'></i>" name="comment[bad]">
+
+<p></p>
+
+  <div class="field">
+    <p>コメント</p>
+    <%= f.text_area :content %>
+  </div>
+
+<p></p>
+
+  <div class="actions">
+    <%= f.submit "評価を投稿する！" , :class => "btn btn-Primary" %>
+  </div>
+<% end %>

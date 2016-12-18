@@ -1,0 +1,37 @@
+<div class="container">
+<%= form_for(@information) do |f| %>
+  <% if @information.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@information.errors.count, "error") %> prohibited this information from being saved:</h2>
+
+      <ul>
+      <% @information.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.hidden_field :users_id,:value => current_user.id %>
+<h3>情報の新規登録</h3>
+<div class="panel panel-default">
+  <div class="panel-heading">追加する情報の件名：</div>
+  <div class="panel-body">
+        <div class="field">
+          <%= f.text_field :title , size: 60 %>
+        </div>
+  </div>
+  <div class="panel-heading">URL：</div>
+  <div class="panel-body">
+        <div class="field">
+          <%= f.text_field :url ,  size: 120 %>
+        </div>
+  </div>
+  <div class="panel-heading">コメント：</div>
+  <div class="panel-body">
+        <div class="field">
+          <%= f.text_area :comment , size: "60x5" %>     
+        </div>
+
+    <%= f.submit '登録する',class:"button-danger"   %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+<h3>コメント</h3>
+<p><%= @comment.content %></p>
+<p><%= @comment.good %></p>
+<p><%= @comment.bad %></p>
+<p><%= @comment.insert_time %></p>
+<p><%= @comment.update_time %></p>
+
+
+
+<%= link_to '編集', edit_comment_path(@comment) %> |
+<%= link_to 'Back', comments_path %>

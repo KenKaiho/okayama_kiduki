@@ -1,0 +1,21 @@
+<%= form_for(@awarenesses_has_information) do |f| %>
+  <% if @awarenesses_has_information.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@awarenesses_has_information.errors.count, "error") %> prohibited this awarenesses_has_information from being saved:</h2>
+
+      <ul>
+      <% @awarenesses_has_information.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :AwarenessesHasInformation %><br>
+    <%= f.text_field :AwarenessesHasInformation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

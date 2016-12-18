@@ -1,0 +1,68 @@
+<div class="jumbotron" style="margin: initial;">
+  <h1>ふかする</h1>
+  <p>あなたの気づきを孵化させるインキュベーションツールです。</p>
+</div>
+
+<div class="col-md-4" style="background-color: #cccccc;">
+<div class="page-header"><h2>気付きランキング</h2></div>
+  <ul class="list-group">
+  <% @awareness_evaluation.each do |awareness_evaluation| %>
+    <li class="list-group-item">
+    	<p><%= link_to awareness_evaluation.title, awareness_evaluation %></p>
+	<button class="btn btn-primary" type="button">
+          評価した人 <span class="badge"><%= awareness_evaluation.evaluation %></span>
+        </button>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<div class="col-md-8"> 
+<div class="page-header"><h2>情報一覧</h2>
+<button type="button" class="btn btn-warning btn-lg"><%= link_to '情報の新規追加', new_information_path %></button>
+</div>
+
+<%= page_entries_info @informations %>
+<% @informations.each do |information| %>
+<ul class="media-list">
+  <li class="media">
+  <div class="media-left">
+    <a href="#">
+      <img class="media-object" src="/assets/news_icon.png" alt="">
+    </a>
+  </div>
+  <div class="media-body">
+    <h3 class="media-heading"><%= information.title %></h3>
+    <%= simple_format(information.comment) %>
+
+          <button type="button" class="btn btn-xm">
+            <%= link_to 'この情報に気づきを投稿する', new_awareness_path(information.id) %>
+          </button>
+	<p></p>
+
+<!-- 気づきひょうじえりあ -->
+<ul class="media-list">
+        <% @imap[information.id].each do |awareness| %>
+  <li class="media">
+    <div class="media-left">
+      <a href="#">
+        <img class="media-object" src="/assets/good_idea.png" alt="..." height="64" width="64">
+      </a>
+    </div>
+    <div class="media-body">
+      <h4 class="media-heading"><%= awareness.title %></h4>
+      <p><%= awareness.meaning %></p>
+      <span style="font-size:8pt;">posted by;<%= if awareness.user.present? then awareness.user.email end %>&nbsp;</span>
+      <%= link_to 'この気づきを見る',awareness %></span>
+    </div>
+  </li>
+      <% end %>
+</ul>
+<!-- 気づき end -->
+
+        </div>
+      </li>
+   </ul>
+  <% end %>
+<%= paginate @informations %>
+
+

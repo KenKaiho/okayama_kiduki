@@ -1,0 +1,46 @@
+<div class="container">
+<p id="notice"><%= notice %></p>
+
+<div class="alert alert-info" role="alert">
+<h3><%= @awareness.title %></h3>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">気づきの内容</div>
+  <div class="panel-body">
+<p><%= @awareness.source %></p>
+<p><%= @awareness.meaning %></p>
+<p>URL:<%= link_to @awareness.url,@awareness.url %></p>
+<p><span style="font-style:italic;font-size:8pt;">posted by;<%= if @awareness.user.present? then @awareness.user.email end %>&nbsp;
+created;<%= @awareness.insert_time %>&nbsp;  updated;<%= @awareness.update_time %></span></p>
+
+  </div>
+</div>
+
+<h3>他の人からのコメント</h3>
+</div>
+
+
+<h3><% @awareness.comments.each do |comment| %></h3>
+
+<div class="row">
+  <div class="col-sm-6 col-md-12">
+    <div class="thumbnail">
+      <div class="caption">
+        <h3><%= if comment.user.present? then comment.user.email else "名無しさん" end %></h3>
+        <p><%= comment.content %></p>
+	<i class='<%= if comment.good? then "glyphicon glyphicon-thumbs-up" end %>'></i>
+	<i class='<%= if comment.bad? then "glyphicon glyphicon-thumbs-down" end %>'></i>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<button type="button" class="btn btn-warning btn-lg"><%= link_to 'コメントする', new_comment_path(@awareness.id) %></button>
+
+
+<%= link_to 'Edit', edit_awareness_path(@awareness) %>
+<%= link_to 'Back', awarenesses_path %>
+
+</div>
